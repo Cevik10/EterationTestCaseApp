@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hakancevik.eterationtestcaseapp.R
 import com.hakancevik.eterationtestcaseapp.data.datasource.local.AppDatabase
 import com.hakancevik.eterationtestcaseapp.ui.cart.CartAdapter
+import com.hakancevik.eterationtestcaseapp.ui.favorite.FavoriteAdapter
 import com.hakancevik.eterationtestcaseapp.ui.home.ProductAdapter
 import dagger.Module
 import dagger.Provides
@@ -26,9 +27,9 @@ object AppModule {
     fun provideGlide(@ApplicationContext context: Context): RequestManager {
 
         return Glide.with(context).setDefaultRequestOptions(
-            RequestOptions().placeholder(R.drawable.ic_outline_star_24)
+            RequestOptions().placeholder(R.drawable.ic_cart_selector)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .error(R.drawable.ic_outline_star_24)
+                .error(R.drawable.ic_cart_selector)
         )
 
     }
@@ -49,6 +50,9 @@ object AppModule {
     @Provides
     fun provideCartAdapter(): CartAdapter = CartAdapter()
 
+    @Singleton
+    @Provides
+    fun provideFavoriteAdapter(glide: RequestManager): FavoriteAdapter = FavoriteAdapter(glide)
 
     @Singleton
     @Provides

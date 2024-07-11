@@ -18,7 +18,7 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(
     private val getCartProductListUseCase: GetLocalProductListUseCase,
     private val getProductsUseCase: GetProductsUseCase,
-    private val updateProductCountUseCase: InsertLocalProductUseCase // Use case to update product count
+    private val updateProductCountUseCase: InsertLocalProductUseCase
 ) : ViewModel() {
 
     private val _products = MutableStateFlow<Resource<List<CartItem>>>(Resource.loading(null))
@@ -36,7 +36,7 @@ class CartViewModel @Inject constructor(
                     }
                     fetchAllProducts()
                 } else {
-                    // Ekrana sepet boş
+                    // Empty cart
                 }
             }
         }
@@ -45,24 +45,28 @@ class CartViewModel @Inject constructor(
     private fun fetchAllProducts() {
         viewModelScope.launch {
             getProductsUseCase().collect { productResult ->
-                if (productResult.status == Status.SUCCESS) {
-                    productResult.data?.let { productList ->
-                        val cartProductIds = _productInCart.value.map { it.id }.toSet()
-                        val filteredProducts = productList.filter { it.id in cartProductIds }
+                when (productResult.status) {
+                    Status.SUCCESS -> {
+                        productResult.data?.let { productList ->
+                            val cartProductIds = _productInCart.value.map { it.id }.toSet()
+                            val filteredProducts = productList.filter { it.id in cartProductIds }
 
-                        val cartItems = filteredProducts.map { productData ->
-                            CartItem(
-                                productData = productData,
-                                productEntity = _productInCart.value.first { it.id == productData.id }
-                            )
+                            val cartItems = filteredProducts.map { productData ->
+                                CartItem(
+                                    productData = productData,
+                                    productEntity = _productInCart.value.first { it.id == productData.id }
+                                )
+                            }
+
+                            _products.value = Resource.success(cartItems)
                         }
-
-                        _products.value = Resource.success(cartItems)
                     }
-                } else if (productResult.status == Status.ERROR) {
-                    _products.value = Resource.error(productResult.message ?: "Unknown error", null)
-                } else {
-                    _products.value = Resource.loading(null)
+                    Status.ERROR -> {
+                        _products.value = Resource.error(productResult.message ?: "Unknown error", null)
+                    }
+                    else -> {
+                        _products.value = Resource.loading(null)
+                    }
                 }
             }
         }
@@ -83,7 +87,4 @@ class CartViewModel @Inject constructor(
             fetchProductFromLocal()
         }
     }
-
-    val productsInCartCount: Int
-        get() = _productInCart.value.size
 }

@@ -77,4 +77,6 @@ dependencies {
     debugImplementation (libs.androidx.fragment.testing.v141)
     androidTestImplementation (libs.mockito.android)
     testImplementation(libs.robolectric.v473)
+
+    implementation("androidx.security:security-crypto:1.1.0-alpha03")
 }

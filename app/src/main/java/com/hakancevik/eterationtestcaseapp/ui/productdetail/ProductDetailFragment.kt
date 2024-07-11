@@ -65,7 +65,7 @@ class ProductDetailFragment : Fragment() {
                 Status.SUCCESS -> {
                     resource.data?.let { product ->
                         setupUI(product)
-                        updateToolbarTitle(product.name)  // Ürün adını kullanarak başlığı güncelle
+                        updateToolbarTitle(product.name)
                     }
                 }
 
@@ -108,7 +108,8 @@ class ProductDetailFragment : Fragment() {
             glide.load(product.image).into(productImage)
             productTitle.text = product.name
             productDescription.text = product.description
-            priceAmount.text = "${product.price} ₺"
+            val priceFormat = getString(R.string.price_format)
+            priceAmount.text = String.format(priceFormat, product.price)
             addToCartButton.setOnClickListener {
                 localProductCount++
                 viewModel.insertLocalProduct(ProductEntity(product.id, localProductCount, isFavorite))

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.hakancevik.eterationtestcaseapp.MainActivity
 import com.hakancevik.eterationtestcaseapp.databinding.FragmentFilterDialogBinding
+import java.util.Locale
 
 class FilterDialogFragment : DialogFragment() {
 
@@ -28,7 +28,7 @@ class FilterDialogFragment : DialogFragment() {
         }
 
         binding.priceMaxSlider.addOnChangeListener { _, fl, _ ->
-            binding.maxPriceText.text = String.format("Max Price: %.2f", fl)
+            binding.maxPriceText.text = String.format(Locale.getDefault(), "Max Price: %.2f", fl)
         }
 
         binding.cancelButton.setOnClickListener {
