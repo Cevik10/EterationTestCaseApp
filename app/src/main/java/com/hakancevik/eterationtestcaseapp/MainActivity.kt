@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun updateToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
 
     fun showBackIcon(show: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)

@@ -4,4 +4,6 @@
     <string name="title_cart">Cart</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_profile">Profile</string>
+    <string name="price">Price:</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>
