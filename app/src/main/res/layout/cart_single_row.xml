@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="@dimen/margin_small">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/margin_small"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,8 +20,8 @@
 
         <TextView
             android:id="@+id/button_minus"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/margin_medium"
+            android:layout_height="@dimen/margin_medium"
             android:background="@drawable/bg_button_minus"
             android:fontFamily="@font/exo_medium"
             android:gravity="center"
@@ -32,8 +32,8 @@
 
         <TextView
             android:id="@+id/product_count_display"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/margin_medium"
+            android:layout_height="@dimen/margin_medium"
             android:background="@drawable/bg_number"
             android:fontFamily="@font/exo_medium"
             android:gravity="center"
@@ -43,8 +43,8 @@
 
         <TextView
             android:id="@+id/button_plus"
-            android:layout_width="37dp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/margin_medium"
+            android:layout_height="@dimen/margin_medium"
             android:background="@drawable/bg_button_plus"
             android:fontFamily="@font/exo_medium"
             android:gravity="center"
@@ -57,7 +57,7 @@
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_small"
         android:fontFamily="@font/exo_medium"
         android:textColor="?attr/colorOnSecondary"
         android:textSize="14sp"
@@ -69,7 +69,7 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="@dimen/margin_x_small"
         android:fontFamily="@font/exo_regular"
         android:textColor="?attr/colorPrimary"
         android:textSize="14sp"

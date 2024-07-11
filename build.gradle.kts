@@ -5,6 +5,5 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.jetbrains.plugin.serializaton)
-    alias(libs.plugins.paparazzi) apply false
     id("androidx.navigation.safeargs") version "2.6.0" apply false
 }

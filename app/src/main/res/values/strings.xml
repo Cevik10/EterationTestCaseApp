@@ -18,7 +18,7 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="price">Price:</string>
     <string name="this_is_favorite_items_fragment">This is Favorite items fragment</string>
-    <string name="my_info_text">This app was made by Hakan Çevik.\n It is an Eteration test case application.\n\nContact: E-mail: hakanxcevik7@gmail.com</string>
+    <string name="my_info_text">This app was made by Hakan Çevik.\n It is an Eteration test case application.\n\nE-mail: hakanxcevik7@gmail.com</string>
     <string name="check_your_internet_connection">Check your internet connection.</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 </resources>

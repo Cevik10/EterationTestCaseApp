@@ -1,9 +1,25 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="margin_kid">4dp</dimen>
+    <dimen name="margin_x_small">7dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_small_plus">10dp</dimen>
+    <dimen name="margin_small_mid">16dp</dimen>
+    <dimen name="margin_x_medium_minus">36dp</dimen>
+    <dimen name="margin_x_medium">37dp</dimen>
+    <dimen name="margin_medium">40dp</dimen>
+    <dimen name="margin_large">60dp</dimen>
+
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_small_plus">12dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">50dp</dimen>
+
     <dimen name="custom_size">14sp</dimen>
     <dimen name="custom_toast_icon_size">30dp</dimen>
     <dimen name="custom_toast_margin">7dp</dimen>
     <dimen name="bg_search_view_radius">4dp</dimen>
+    <dimen name="none">0dp</dimen>
 </resources>
