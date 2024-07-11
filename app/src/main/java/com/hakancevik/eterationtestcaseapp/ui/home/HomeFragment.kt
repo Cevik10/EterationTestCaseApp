@@ -1,22 +1,35 @@
 package com.hakancevik.eterationtestcaseapp.ui.home
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hakancevik.eterationtestcaseapp.R
 import com.hakancevik.eterationtestcaseapp.data.model.ProductEntity
 import com.hakancevik.eterationtestcaseapp.databinding.FragmentHomeBinding
 import com.hakancevik.eterationtestcaseapp.domain.entity.ProductData
 import com.hakancevik.eterationtestcaseapp.extension.Status
+import com.hakancevik.eterationtestcaseapp.extension.createCustomProgressDialog
+import com.hakancevik.eterationtestcaseapp.extension.customToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,6 +45,8 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var productAdapter: ProductAdapter
     private lateinit var recyclerViewProducts: RecyclerView
+
+    private lateinit var progressDialog: AlertDialog
 
 
     override fun onCreateView(
@@ -80,11 +95,48 @@ class HomeFragment : Fragment() {
                     )
                 )
 
+                requireActivity().customToast("Product added to cart")
 
             }
         )
 
 
+        val textColor = ContextCompat.getColor(requireContext(), R.color.gray)
+        val searchViewHintText = binding.productSearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        searchViewHintText.setTextColor(textColor)
+
+        val textFont = ResourcesCompat.getFont(requireContext(), R.font.exo_medium)
+        searchViewHintText.typeface = textFont
+
+        searchViewHintText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
+
+        val searchIcon = binding.productSearch.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
+        searchIcon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        searchViewHintText.hint = "Search"
+        val hintColor = ContextCompat.getColor(requireContext(), R.color.gray)
+        searchViewHintText.setHintTextColor(hintColor)
+
+
+
+        binding.productSearch.setOnClickListener {
+            binding.productSearch.isIconified = false
+        }
+
+
+        binding.productSearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filteredList = productListData.filter {
+                    it.name.lowercase().contains(newText.orEmpty().lowercase())
+                }
+                productAdapter.submitList(filteredList)
+                return true
+            }
+
+        })
 
 
     }
@@ -93,6 +145,11 @@ class HomeFragment : Fragment() {
         viewModel.products.onEach { resource ->
             when (resource.status) {
                 Status.SUCCESS -> {
+                    lifecycleScope.launch {
+                        delay(600)
+                        progressDialog.dismiss()
+                    }
+
                     resource.data?.let { productList ->
                         productListData.clear()
                         productListData.addAll(productList)
@@ -102,9 +159,13 @@ class HomeFragment : Fragment() {
                 }
 
                 Status.ERROR -> {
+                    progressDialog.dismiss()
+                    requireActivity().customToast(getString(R.string.check_your_internet_connection))
                 }
 
                 Status.LOADING -> {
+                    progressDialog = requireActivity().createCustomProgressDialog(getString(R.string.loading))
+                    progressDialog.show()
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)

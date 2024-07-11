@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/exo_bold"
-        android:text=""
+        android:text="@string/this_is_favorite_items_fragment"
         android:textAlignment="center"
         android:textColor="?attr/colorPrimary"
         android:textSize="18sp"

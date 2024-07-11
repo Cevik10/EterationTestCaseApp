@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/button_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_button_minus"
+            android:fontFamily="@font/exo_medium"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/product_count_display"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_number"
+            android:fontFamily="@font/exo_medium"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="15sp"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/button_plus"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_button_plus"
+            android:fontFamily="@font/exo_medium"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/exo_medium"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        tools:text="Samsung s22" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/exo_regular"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/product_name"
+        app:layout_constraintTop_toBottomOf="@+id/product_name"
+        tools:text="12.000 tl" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
