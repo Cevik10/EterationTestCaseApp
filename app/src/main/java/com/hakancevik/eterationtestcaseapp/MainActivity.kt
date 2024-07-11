@@ -1,16 +1,26 @@
 package com.hakancevik.eterationtestcaseapp
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hakancevik.eterationtestcaseapp.databinding.ActivityMainBinding
+import com.hakancevik.eterationtestcaseapp.extension.gone
+import com.hakancevik.eterationtestcaseapp.extension.hide
+import com.hakancevik.eterationtestcaseapp.extension.show
+import com.hakancevik.eterationtestcaseapp.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -48,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-
     fun showBackIcon(show: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)
 
@@ -61,6 +70,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    fun updateBadgeCount(count: Int) {
+        val cartBadge = binding.navView.getBadge(R.id.navigation_cart)
+        if (count > 0) {
+            if (cartBadge == null) {
+                binding.navView.getOrCreateBadge(R.id.navigation_cart).apply {
+                    number = count
+                }
+            } else {
+                cartBadge.number = count
+            }
+        } else {
+            binding.navView.removeBadge(R.id.navigation_cart)
+        }
+    }
+
+    fun removeBadge(){
+        binding.navView.removeBadge(R.id.navigation_cart)
+    }
 
 
 }
