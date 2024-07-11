@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EterationTestCaseApp</string>
+    <string name="title_home">E-Market</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
 </resources>
