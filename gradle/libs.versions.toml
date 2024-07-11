@@ -1,26 +1,141 @@
 [versions]
-agp = "8.5.0"
-kotlin = "1.9.0"
-coreKtx = "1.13.1"
+androidxCore = "1.12.0"
+androidxAppcompat = "1.6.1"
+googleMaterial = "1.11.0"
+androidxConstraintLayout = "2.1.4"
+androidxLifecycle = "2.7.0"
+daggerHiltAndroidCompiler = "2.50"
+androidxNavigation = "2.7.7"
+hiltAndroidTesting = "2.43.2"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-appcompat = "1.7.0"
-material = "1.12.0"
-activity = "1.9.0"
-constraintlayout = "2.1.4"
+androidxTestJunit = "1.1.5"
+androidxEspressoCore = "3.5.1"
+daggerHilt = "2.50"
+hiltCommon = "1.2.0"
+hiltNavigationFragment = "1.2.0"
+hiltWork = "1.2.0"
+kotlinxCollectionsImmutable = "0.3.5"
+mockk-mockk = "1.12.0"
+workRuntimeKtx = "2.9.0"
+mockitoCore = "5.7.0"
+mockitoInline = "4.10.0"
+mockitoKotlin = "5.2.1"
+glide = "4.12.0"
+kotlinxCoroutinesTest = "1.7.3"
+androidxCoreTesting = "2.2.0"
+compose = "1.6.2"
+exoplayer = "2.19.1"
+lifecycleViewModelCompose = "2.7.0"
+javaxInject = "1"
+retrofit = "2.9.0"
+gson = "2.10"
+gradle = "8.3.0"
+kotlin-gradle = "1.9.0"
+kotlin-kapt = "8.2"
+hiltPlugin = "2.44"
+org-jetbrains-kotlin-jvm = "1.9.0"
+composeLifecycle = "2.7.0"
+kotlinxSerializationJson = "1.6.0"
+jetbrainsSerialization = "1.6.21"
+turbine = "1.0.0"
+paparazzi = "1.3.1"
+androidxRoom = "2.6.1"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+googleMaterial = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+androidxLifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+androidxLifecycleViewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+daggerHiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHiltAndroidCompiler" }
+androidxNavigationFragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidxNavigationUiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidxTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJunit" }
+androidxEspressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }
+daggerHiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
+hiltCommon = { module = "androidx.hilt:hilt-common", version.ref = "hiltCommon" }
+hiltNavigationFragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hiltNavigationFragment" }
+hiltWork = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
+mockk-mockk = { module = "io.mockk:mockk", version.ref = "mockk-mockk" }
+workRuntimeKtx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockitoInline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+kotlinxCoroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+androidxCoreTesting = { module = "androidx.arch.core:core-testing", version.ref = "androidxCoreTesting" }
+hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
+lifecycleViewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModelCompose" }
+composeUiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
+javaxInject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofitConverterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+retrofitGson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
+ktxLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "composeLifecycle" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
+androidxRoomCompiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
+
+[bundles]
+androidxCore = ["androidxCoreKtx",
+    "androidxAppcompat",
+    "googleMaterial",
+    "androidxConstraintLayout",
+]
+lifecycle = ["androidxLifecycleLivedataKtx",
+    "androidxLifecycleViewmodelKtx",
+    "ktxLifecycle"]
+navigation = ["androidxNavigationFragmentKtx",
+    "androidxNavigationUiKtx"]
+hilt = ["daggerHiltAndroid",
+    "hiltCommon",
+    "hiltNavigationFragment",
+    "hiltWork"]
+hiltKapt = ["daggerHiltAndroidCompiler",
+    "hiltCompiler"]
+
+glideKapt= ["glideCompiler"]
+
+retrofit = ["retrofit",
+    "retrofitConverterGson",
+    "retrofitGson"]
+testing = ["junit",
+    "androidxTestJunit",
+    "androidxEspressoCore",
+    "mockitoCore",
+    "mockitoInline",
+    "mockitoKotlin",
+    "kotlinxCoroutinesTest",
+    "androidxCoreTesting",
+    "composeUiTestJunit4",
+    "turbine",
+    "mockk-mockk"]
+uiTesting = ["composeUiTestJunit4", "androidxEspressoCore"]
+room = ["androidx-room-ktx",
+    "androidx-room-runtime"]
+otherLibraries = ["workRuntimeKtx",
+    "exoplayer",
+    "javaxInject"]
+
+
+
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
+kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
+plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSerializationJson" }
+jetbrains-plugin-serializaton = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsSerialization" }
+paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }

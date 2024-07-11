@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
+    id(libs.plugins.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.paparazzi)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -34,12 +38,20 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.bundles.androidxCore)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.bundles.navigation)
+    implementation(libs.bundles.hilt)
+    implementation(libs.bundles.otherLibraries)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.room)
+    kapt(libs.androidxRoomCompiler)
+    kapt(libs.bundles.hiltKapt)
+    annotationProcessor(libs.hiltCompiler)
+
+    implementation(libs.glide)
+    kapt(libs.bundles.glideKapt)
+
+    testImplementation(libs.bundles.testing)
+    androidTestImplementation(libs.bundles.uiTesting)
 }
