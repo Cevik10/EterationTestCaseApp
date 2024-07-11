@@ -1,11 +1,13 @@
 package com.hakancevik.eterationtestcaseapp.di
 
 import android.content.Context
+import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.hakancevik.eterationtestcaseapp.R
+import com.hakancevik.eterationtestcaseapp.data.datasource.local.AppDatabase
 import com.hakancevik.eterationtestcaseapp.ui.home.ProductAdapter
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,17 @@ object AppModule {
         )
 
     }
+
+    @Singleton
+    @Provides
+    fun provideRoomDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(
+            context, AppDatabase::class.java, "EterationAppDatabase"
+        ).build()
+
+    @Singleton
+    @Provides
+    fun provideDao(database: AppDatabase) = database.productDao()
 
     @Singleton
     @Provides
