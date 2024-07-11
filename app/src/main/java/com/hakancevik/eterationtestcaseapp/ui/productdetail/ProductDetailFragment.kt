@@ -15,6 +15,7 @@ import com.hakancevik.eterationtestcaseapp.data.model.ProductEntity
 import com.hakancevik.eterationtestcaseapp.databinding.FragmentProductDetailBinding
 import com.hakancevik.eterationtestcaseapp.domain.entity.ProductData
 import com.hakancevik.eterationtestcaseapp.extension.Status
+import com.hakancevik.eterationtestcaseapp.extension.customToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -111,6 +112,7 @@ class ProductDetailFragment : Fragment() {
             addToCartButton.setOnClickListener {
                 localProductCount++
                 viewModel.insertLocalProduct(ProductEntity(product.id, localProductCount, isFavorite))
+                requireActivity().customToast("Product added to cart.")
             }
             if (isFavorite) {
                 productStarIcon.setImageResource(R.drawable.ic_star_24)
