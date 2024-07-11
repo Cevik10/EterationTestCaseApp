@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.hakancevik.eterationtestcaseapp.R
 import com.hakancevik.eterationtestcaseapp.data.datasource.local.AppDatabase
+import com.hakancevik.eterationtestcaseapp.ui.cart.CartAdapter
 import com.hakancevik.eterationtestcaseapp.ui.home.ProductAdapter
 import dagger.Module
 import dagger.Provides
@@ -41,11 +42,16 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideDao(database: AppDatabase) = database.productDao()
+    fun provideProductAdapter(glide: RequestManager): ProductAdapter = ProductAdapter(glide)
+
 
     @Singleton
     @Provides
-    fun provideProductAdapter(glide: RequestManager): ProductAdapter = ProductAdapter(glide)
+    fun provideCartAdapter(): CartAdapter = CartAdapter()
 
+
+    @Singleton
+    @Provides
+    fun provideDao(database: AppDatabase) = database.productDao()
 
 }

@@ -25,6 +25,9 @@ import com.hakancevik.eterationtestcaseapp.domain.entity.ProductData
 import com.hakancevik.eterationtestcaseapp.extension.Status
 import com.hakancevik.eterationtestcaseapp.extension.createCustomProgressDialog
 import com.hakancevik.eterationtestcaseapp.extension.customToast
+import com.hakancevik.eterationtestcaseapp.ui.home.filter.FilterCriteria
+import com.hakancevik.eterationtestcaseapp.ui.home.filter.FilterDialogFragment
+import com.hakancevik.eterationtestcaseapp.ui.home.filter.FilterDialogListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -33,7 +36,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), FilterDialogListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -139,6 +142,11 @@ class HomeFragment : Fragment() {
         })
 
 
+        binding.selectFilter.setOnClickListener {
+            val dialog = FilterDialogFragment()
+            dialog.listener = this
+            dialog.show(parentFragmentManager, "filterDialog")
+        }
     }
 
     private fun observeData() {
@@ -199,8 +207,41 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+    override fun onFilterApply(filterCriteria: FilterCriteria) {
+        val filteredData: ArrayList<ProductData> = arrayListOf()
+        if (filterCriteria.isInCart) {
+            filteredData.addAll(
+                filterProductData(
+                    productListData,
+                    localProductList
+                )
+            )
+        }
+        if (filterCriteria.isFavorite) {
+            filteredData.addAll(filterIsFavoriteProductData(productListData, localProductList))
+        }
+        filteredData.addAll(productListData.filter {
+            it.price.toFloat() < filterCriteria.priceRange
+        })
+        productAdapter.submitList(filteredData)
+    }
 
+}
 
+fun filterProductData(
+    productListData: List<ProductData>,
+    localProductList: List<ProductEntity>
+): List<ProductData> {
+    val validIds = localProductList.filter { it.count > 0 }.map { it.id }.toSet()
+    return productListData.filter { it.id in validIds }
+}
+
+fun filterIsFavoriteProductData(
+    productListData: List<ProductData>,
+    localProductList: List<ProductEntity>
+): List<ProductData> {
+    val validIds = localProductList.filter { it.isFavorite }.map { it.id }.toSet()
+    return productListData.filter { it.id in validIds }
 }
 
 
